@@ -18,7 +18,12 @@
             @foreach (var property in Model)
             {
                 <tr>
-                    <td>@property.Name</td>
+                    @*Make sure if can be done better*@
+                    <td>
+                        <a href="viewpropertydetails/@property.Id">
+                            @property.Name
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -51,6 +51,7 @@ namespace WebApp.Controllers
 
         public IActionResult ViewPropertyDetails(int id)
         {
+            //Todo single entry only handle exeptions
             var property = properties
                 .Where(x => x.Id == id);
 
