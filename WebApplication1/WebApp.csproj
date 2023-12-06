@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-WebApplication1-918C4FDD-7777-4375-AA78-44078DBA6C51</UserSecretsId>
+    <UserSecretsId>aspnet-WebApp-918C4FDD-7777-4375-AA78-44078DBA6C51</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
