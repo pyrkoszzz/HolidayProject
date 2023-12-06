@@ -43,16 +43,18 @@ namespace WebApp.Controllers
             return View("ListProperties", properties);
         }
 
-        public ActionResult ListAvailable(DateTime start, DateTime end)
+        public IActionResult ListAvailable(DateTime start, DateTime end)
         {
             // Filter properties based on availability between start and end dates
             return View("ListProperties", properties);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult ViewPropertyDetails(int id)
+        public IActionResult ViewPropertyDetails(int id)
         {
-            return View("ListProperties", properties);
+            var property = properties
+                .Where(x => x.Id == id);
+
+            return View("PropertyDetails", property);
         }
     }
 }

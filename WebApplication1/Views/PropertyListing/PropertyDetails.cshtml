@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PropertyDetailsModel>
+
+@{
+    ViewBag.Title = "Property Details";
+}
+
+<h2>Property Details</h2>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Property Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var property in Model)
+            {
+                <tr>
+                    <td>@property.Name</td>
+                </tr>
+                <tr>
+                    <td>@property.Description</td>
+                </tr>
+                @foreach(var date in property.BookedDates)
+                {
+                    <tr>
+                        <td>@date</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No properties available.</p>
+}
