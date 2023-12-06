@@ -46,7 +46,8 @@ namespace WebApp.Controllers
         public IActionResult ListAvailable(DateTime start, DateTime end)
         {
             // Filter properties based on availability between start and end dates
-            return View("ListProperties", properties);
+            var availableProperties = properties.Where(x => (!x.BookedDates.Any(date => date >= start && date <= end))).ToList();
+            return View("ListProperties", availableProperties);
         }
 
         public IActionResult ViewPropertyDetails(int id)
