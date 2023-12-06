@@ -36,7 +36,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult ListAll()
         {
-            return View();
+            return View("ListProperties", properties);
         }
 
         public ActionResult ListAvailable(DateTime start, DateTime end)

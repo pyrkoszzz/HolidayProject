@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PropertyListingModel>
+
+@{
+    ViewBag.Title = "Property Listings";
+}
+
+<h2>Property Listings</h2>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Property Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var property in Model)
+            {
+                <tr>
+                    <td>@property.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No properties available.</p>
+}
