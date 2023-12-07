@@ -1,0 +1,13 @@
+﻿@model PropertyListingModel
+
+@{
+    
+}
+<div class="card" style="width: 18rem; margin-right: 1rem">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Blurb</p>
+        <a href="viewpropertydetails/@Model.Id" class="btn btn-primary">More details</a>
+    </div>
+</div>
