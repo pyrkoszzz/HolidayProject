@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataEntities;
+using DataEntities.Entities;
 using DataEntities.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;

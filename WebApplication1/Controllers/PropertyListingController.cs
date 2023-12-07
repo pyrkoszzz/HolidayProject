@@ -30,9 +30,9 @@ namespace WebApp.Controllers
         {
             // Filter properties based on availability between start and end dates
             var properties = _properties.GetProperties();
-            var availableProperties = properties.Where(x => (!x.BookedDates.Any(date => date >= start && date <= end))).ToList();
+            var availableProperties = properties.Where(x => (!x.BookedNights.Any(date => date.Night >= start && date.Night <= end))).ToList();
             var mapped_properties = _mapper.Map<IEnumerable<PropertyDetailsModel>>(availableProperties);
-            return View("ListProperties", mapped_properties);
+            return View("ListProperties", properties);
         }
 
         public IActionResult ViewPropertyDetails(int id)
@@ -40,7 +40,7 @@ namespace WebApp.Controllers
             //Todo single entry only handle exeptions
             var properties = _properties.GetProperties();
             var property = properties
-                .Where(x => x.Id == id);
+                .Where(x => x.PropertyId == id);
             var mapped_properties = _mapper.Map<IEnumerable<PropertyDetailsModel>>(property);
             return View("PropertyDetails", mapped_properties);
         }

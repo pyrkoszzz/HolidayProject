@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DataEntities;
+using DataEntities.Entities;
 using WebApp.Models;
 
 namespace WebApp.Profiles
@@ -8,8 +8,9 @@ namespace WebApp.Profiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<Property, PropertyDetailsModel>();
-            CreateMap<PropertyDetailsModel, Property>();
+            CreateMap<Property, PropertyDetailsModel>()
+               .ForMember(property => property.Id, opt => opt.MapFrom(src => src.PropertyId))
+               .ReverseMap();
         }
     }
 }

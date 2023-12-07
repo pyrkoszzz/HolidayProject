@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataEntities.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace DataEntities.Repositories
     public interface IPropertyRepository 
     {
         IEnumerable<Property> GetProperties();
-        void AddProperty(Property property);
+        Property AddProperty(Property property);
     }
 }
