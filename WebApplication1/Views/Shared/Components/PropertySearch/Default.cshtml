@@ -6,10 +6,10 @@
 @*Add value state preservation*@
 <form asp-controller="PropertyListing" asp-action="ListAvailable" method="get">
     <label for="startDate">Start Date:</label>
-    <input type="text" id="startDate" name="start" value="" required />
+    <input type="date" id="startDate" name="start" value="" required />
 
     <label for="endDate">End Date:</label>
-    <input type="text" id="endDate" name="end" value="" required />
+    <input type="date" id="endDate" name="end" value="" required />
 
     <button type="submit">Search</button>
 </form>
