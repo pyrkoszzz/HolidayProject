@@ -34,13 +34,35 @@
                 <label asp-for="Description">Description:</label>
                 <input asp-for="Description" class="form-control" />
             </div>
-
             <div class="form-group">
-                <label asp-for="Amenities">Amenities:</label>
-                <input asp-for="Amenities" class="form-control" />
-            </div>
-
+                <p>Main property image:</p>
+                <label for="fileInput" class="image-input" id="imageInputContainer">
+                    <input type="file" id="fileInput" name="mainImage" accept="image/*" onchange="previewImage()">
+                     <div class="plus-icon">+</div>
+                    <img class="image-preview" id="imagePreview" alt="Image Preview">
+                </label>
+             </div>
             <button type="submit" class="btn btn-primary">Register Property</button>
         </form>
     </div>
 </div>
+
+<script>
+    function previewImage() {
+        var input = document.getElementById('fileInput');
+        var container = document.getElementById('imageInputContainer');
+        var preview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                container.classList.add('has-image');
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

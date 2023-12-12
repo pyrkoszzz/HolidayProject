@@ -5,10 +5,7 @@
 @{
     ViewBag.Title = "My bookings";
 }
-
-<h2>My bookings</h2>
-<br />
-
+<div class="container-fluid">
 <div class="row">
     @foreach (var booking in Model)
     {
@@ -16,4 +13,5 @@
             <partial name="_BookingCard" model=booking />
         </div>
     }
+</div>
 </div>

@@ -4,6 +4,7 @@
     {
         public int BookingId { get; set; }
         public int PropertyId { get; set; }
+        public Property Property { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public float CostPerNight { get; set; }

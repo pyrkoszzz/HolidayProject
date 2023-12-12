@@ -47,6 +47,8 @@ namespace DataEntities.Repositories
         public IEnumerable<Booking> GetBookingsByUser(string? userId)
         {
             return _context.Bookings
+                .Include(b => b.Property)
+                .Include(b => b.Property.Images)
                 .Where(b => b.UserId == userId)
                 .ToList();
         }

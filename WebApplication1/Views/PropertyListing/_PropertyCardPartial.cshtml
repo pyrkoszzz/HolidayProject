@@ -1,9 +1,6 @@
 ﻿@model PropertyListingModel
 
-@{
-    
-}
-<div class="card" style="width: 18rem; margin-right: 1rem">
+<div class="card" style="width: 22rem; margin-right: 1rem; margin-bottom: 1rem">
     @if (@Model.Images.Any())
     {
         <img class="card-img-top" src="@Model.Images.First()" height="250" alt="Property main image">

@@ -1,26 +1,24 @@
 ﻿@using DataEntities.Entities
 
 @model Booking
-
-<div class="card">
-    <div class="card shadow-sm">
-
-        <div class="card-header">
-            <h4>
-                <a asp-controller="PropertyListing" asp-action="ViewPropertyDetails" asp-route-id=@Model.PropertyId>
-                    @Model.PropertyId
-                </a>
-            </h4>
-        </div>
-
-        @*<div class="card-body">
-            <b>@Model.Property.Blurb</b> <br />
-            Location: @Model.Property.Location <br />
-            Dates booked: @Model.StartDate.ToString("MM/dd/yyyy") - @Model.EndDate.ToString("MM/dd/yyyy")
-        </div>
-
-        <div class="card-footer">
-            Total amount paid: @(Model.CostPerNight * (Model.EndDate - Model.StartDate).Days)
-        </div>*@
+<div class="card" style="width: 20rem; margin-right: 1rem; margin-bottom: 1rem">
+    @if (@Model.Property.Images.Any())
+    {
+        <img class="card-img-top" src="@Model.Property.Images.First().ImageUrl" height="250" alt="Property main image">
+    }
+    else
+    {
+        <img class="card-img-top" src="/assets/no_photo.jpg" height="250" alt="Property main image">
+    }
+    <div class="card-body">
+        <h5 class="card-title">@Model.Property.Name</h5>
+        <p class="card-text">@Model.Property.Blurb</p>
+        <p class="card-text">Location: @Model.Property.Location</p>
+        <br />
+        <p class="card-text">Dates booked: @Model.StartDate.ToString("MM/dd/yyyy") - @Model.EndDate.ToString("MM/dd/yyyy")</p>
+        <a href="/PropertyListing/viewpropertydetails/@Model.PropertyId" class="btn btn-primary">More details</a>
+    </div>
+    <div class="card-footer">
+        <p class="card-text">Final quote: @(Model.CostPerNight * (Model.EndDate - Model.StartDate).Days)$</p>
     </div>
 </div>

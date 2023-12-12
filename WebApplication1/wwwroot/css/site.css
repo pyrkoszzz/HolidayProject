@@ -1,10 +1,12 @@
 .background_img {
     background-image: url("../assets/bg_image.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: 100vw 100vh;
     margin-top: 10px;
     margin-bottom: 50px;
     position: relative;
+    background-blend-mode: overlay;
+    background-color: rgba(0,0,0,0.35);
 }
 
 .navbar.navbar-expand-lg.navbar-light li a {
@@ -53,4 +55,53 @@
 
 .card-img-top {
     object-fit: cover;
+}
+
+.image-cropped {
+    object-fit: cover;
+    object-position: center;
+    height: 300px;
+}
+
+.image-input {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 150px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+}
+
+.image-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.plus-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #777;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.image-input.has-image {
+    border: none;
+}
+
+.image-input.has-image .plus-icon {
+    display: none;
 }
