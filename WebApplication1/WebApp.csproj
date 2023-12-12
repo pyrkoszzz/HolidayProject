@@ -20,4 +20,9 @@
     <ProjectReference Include="..\DataEntities\DataEntities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Common\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

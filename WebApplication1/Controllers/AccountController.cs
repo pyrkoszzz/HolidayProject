@@ -6,20 +6,19 @@ namespace WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IBookingRepository _repository;
+        private readonly IBookingRepository _userRepository;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountController(
-            IBookingRepository repository, UserManager<IdentityUser> manager)
+        public AccountController(IBookingRepository userRepository, UserManager<IdentityUser> userManager)
         {
-            _repository = repository;
-            _userManager = manager;
+            _userRepository = userRepository;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult UserBookings()
         {
             var userId = _userManager.Users.FirstOrDefault()?.Id;
-            var bookings = _repository.GetBookingsByUser(userId);
+            var bookings = _userRepository.GetBookingsByUser(userId);
 
             return View(bookings);
         }

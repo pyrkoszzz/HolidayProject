@@ -1,0 +1,26 @@
+﻿@using DataEntities.Entities
+
+@model Booking
+
+<div class="card">
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+            <h4>
+                <a asp-controller="PropertyListing" asp-action="ViewPropertyDetails" asp-route-id=@Model.PropertyId>
+                    @Model.PropertyId
+                </a>
+            </h4>
+        </div>
+
+        @*<div class="card-body">
+            <b>@Model.Property.Blurb</b> <br />
+            Location: @Model.Property.Location <br />
+            Dates booked: @Model.StartDate.ToString("MM/dd/yyyy") - @Model.EndDate.ToString("MM/dd/yyyy")
+        </div>
+
+        <div class="card-footer">
+            Total amount paid: @(Model.CostPerNight * (Model.EndDate - Model.StartDate).Days)
+        </div>*@
+    </div>
+</div>

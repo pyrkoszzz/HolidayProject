@@ -1,18 +1,56 @@
-html {
-  font-size: 14px;
+.background_img {
+    background-image: url("../assets/bg_image.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    position: relative;
 }
 
-@media (min-width: 768px) {
-  html {
+.navbar.navbar-expand-lg.navbar-light li a {
+    color: white;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+}
+
+.navbar.navbar-expand-lg.navbar-light li a:hover {
+    color: white;
+    border-bottom: 3px solid white;
+}
+
+.checked {
+    color: rgb(0,132,137)
+}
+
+.btn-primary.btn-lg {
+    background-color: rgb(255,90,95);
+    border-color: rgb(255,90,95);
     font-size: 16px;
-  }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.container li a {
+    color: #767676;
 }
 
-body {
-  margin-bottom: 60px;
+.btn.btn-outline-primary.rounded.nohover {
+    pointer-events: none;
+}
+
+.btn.btn-primary.new {
+    background-color: rgb(0, 106, 112);
+    border: none;
+    font-size: 12px;
+    padding: 1px 4px;
+}
+
+.container {
+    margin-top: 10px;
+    display: block;
+}
+
+.card-img-top {
+    object-fit: cover;
 }

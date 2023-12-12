@@ -15,6 +15,8 @@ namespace DataEntities.Repositories
         public IEnumerable<Property> GetProperties()
         {
             return _context.Properties
+                .Include(p => p.Images)
+                .Include(p => p.BookedNights)
                 .AsNoTracking()
                 .ToList();
         }

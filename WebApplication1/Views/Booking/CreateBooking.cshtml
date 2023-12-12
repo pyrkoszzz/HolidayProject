@@ -1,0 +1,22 @@
+﻿@model BookingModel
+@{
+    ViewBag.Title = "Create booking";
+}
+
+<h2>Create booking</h2>
+<br />
+
+<form asp-controller="Booking" asp-action="SubmitBooking" method="post">
+    @Html.HiddenFor(model => model.PropertyId)
+    @Html.HiddenFor(model => model.StartDate)
+    @Html.HiddenFor(model => model.EndDate)
+
+    <label for="UserEmail">Email address</label>
+    <input type="email" id="UserEmail" name="UserEmail" class="form-control" required />
+
+    <label for="BillingAddress">Billing address</label>
+    <input type="text" id="BillingAddress" name="BillingAddress" class="form-control" required />
+    <br />
+
+    <button type="submit" class="btn btn-primary">Submit booking</button>
+</form>

@@ -1,35 +1,141 @@
-﻿@model IEnumerable<PropertyDetailsModel>
+﻿@model PropertyDetailsModel
 
 @{
     ViewBag.Title = "Property Details";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <partial name="_PropertyImageCarousel" />
+                    <br />
+                    <div class="card">
+                        <div class="card-header">
+                            Overview
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.Name</h5>
+                            <p class="card-text">@Model.Description</p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="card">
+                        <div class="card-header">
+                            Detailed informations 
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title">Number of bedrooms: <span class="badge badge-primary">@Model.NumberOfBedrooms</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form asp-controller="Booking" asp-action="BookProperty" method="post">
+            <input type="hidden" name="propertyId" value="@Model.Id" />
+            <input type="hidden" id="endDate" name="end">
+            <input type="hidden" id="startDate" name="start">
 
-<h2>Property Details</h2>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header">
+                                Book date 
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input type="text" id="date-range" readonly>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="card">
+                          <h5 class="card-header">Summary & Cost</h5>
+                          <div class="card-body">
+                            <h5 class="card-title" id="finalBookingCostDisplay">Booking cost</h5>
+                            <p class="card-text">Cost per night: @Model.CostPerNight$</p>
+                            <p class="card-text" id="numberOfNightsDisplay">Number of nights: 0</p>
+                            <button type="submit" class="btn btn-primary">Submit booking</button>
+                          </div>
+                        </div>
+                        @*<form asp-controller="Booking" asp-action="BookProperty" method="post">
+                            <input type="hidden" name="propertyId" value="@Model.Id" />
 
-@if (Model.Any())
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Property Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var property in Model)
-            {
-                <tr>
-                    <td>@property.Name</td>
-                </tr>
-                <tr>
-                    <td>@property.Description</td>
-                </tr>
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" id="startDate" name="start" min="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+
+                            <label for="endDate">End Date:</label>
+                            <input type="date" id="endDate" name="end" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" required />
+
+                            <button type="submit">Book property</button>
+                        </form>
+                        <div>
+                            <form method="post" asp-controller="PropertyManagement" asp-action="AddImage" asp-route-id=@Model.Id>
+                                <button type="submit">Add image</button>
+                            </form>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+
+var bookedStartDates = @Html.Raw(Json.Serialize(Model.BookedStartDates));
+var bookedEndDates = @Html.Raw(Json.Serialize(Model.BookedEndDates));
+
+$(document).ready(function() {
+    $('#date-range').daterangepicker({
+        opens: 'down',
+        drops: 'down',
+        autoApply: true,
+        minDate: moment(),
+        isInvalidDate: function(date) {
+            var formattedDate = date.format('YYYY-MM-DD');
+            for (var i = 0; i < bookedStartDates.length; i++) {
+                if (formattedDate >= bookedStartDates[i] && formattedDate <= bookedEndDates[i]) {
+                    return true;
+                }
             }
-        </tbody>
-    </table>
-    <label for="bookDate">Book Date:</label>
-    <input type="date" id="bookDate" name="bookdate" value="" required />
+            return false;
+        },
+        locale: {
+        format: 'YYYY-MM-DD',
+        firstDay: 1
+        }
+    }).on('apply.daterangepicker', function(ev, picker) {
+        $('#endDate').val(picker.endDate.format('YYYY-MM-DD'));
+        $('#startDate').val(picker.startDate.format('YYYY-MM-DD'));
+        updateNumberOfNights(picker.startDate, picker.endDate);
+        updateFinalBookingCost();
+    });
+});
+
+function updateNumberOfNights(startDate, endDate) {
+    var numberOfNightsDisplay = document.getElementById('numberOfNightsDisplay');
+    var numberOfNights = moment(endDate).diff(moment(startDate), 'days');
+    numberOfNightsDisplay.textContent = 'Number of Nights: ' + numberOfNights;
 }
-else
-{
-    <p>No properties available.</p>
-}
+
+function updateFinalBookingCost() {
+    var finalBookingCostDisplay = document.getElementById('finalBookingCostDisplay');
+    var numberOfNights = parseInt(document.getElementById('numberOfNightsDisplay').textContent.split(': ')[1]);
+    var costPerNight = @Model.CostPerNight;
+    var finalBookingCost = numberOfNights * costPerNight;
+
+    finalBookingCostDisplay.textContent = 'Final Booking Cost: $' + finalBookingCost;
+        }
+</script>

@@ -21,7 +21,7 @@ namespace DataEntities.Repositories
             if (property == null || !IsPropertyAvailable(property, booking.StartDate, booking.EndDate))
                 return null;
 
-            for (var date = booking.StartDate.AddDays(1); date <= booking.EndDate; date = date.AddDays(1))
+            for (var date = booking.StartDate; date <= booking.EndDate; date = date.AddDays(1))
             {
                 var bookedNight = new BookedNight
                 {

@@ -4,7 +4,14 @@
     
 }
 <div class="card" style="width: 18rem; margin-right: 1rem">
-    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    @if (@Model.Images.Any())
+    {
+        <img class="card-img-top" src="@Model.Images.First()" height="250" alt="Property main image">
+    }
+    else
+    {
+        <img class="card-img-top" src="/assets/no_photo.jpg" height="250" alt="Property main image">
+    }
     <div class="card-body">
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text">@Model.Blurb</p>

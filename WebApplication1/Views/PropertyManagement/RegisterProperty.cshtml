@@ -2,43 +2,45 @@
 }
 @model WebApp.Models.PropertyDetailsModel
 
-<h2>Register New Property</h2>
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="PropertyManagement" asp-action="RegisterProperty" method="post">
+            <div class="form-group">
+                <label asp-for="Name">Property Name:</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
 
-<form asp-controller="PropertyManagement" asp-action="RegisterProperty" method="post">
-    <div class="form-group">
-        <label asp-for="Name">Property Name:</label>
-        <input asp-for="Name" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Blurb">Blurb:</label>
+                <input asp-for="Blurb" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location">Location:</label>
+                <input asp-for="Location" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NumberOfBedrooms">Number of bedrooms:</label>
+                <input asp-for="NumberOfBedrooms" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CostPerNight">Cost per night:</label>
+                <input asp-for="CostPerNight" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Description:</label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Amenities">Amenities:</label>
+                <input asp-for="Amenities" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register Property</button>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Blurb">Blurb:</label>
-        <input asp-for="Blurb" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Location">Location:</label>
-        <input asp-for="Location" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="NumberOfBedrooms">Number of bedrooms:</label>
-        <input asp-for="NumberOfBedrooms" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CostPerNight">Cost per night:</label>
-        <input asp-for="CostPerNight" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Description">Description:</label>
-        <input asp-for="Description" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Amenities">Amenities:</label>
-        <input asp-for="Amenities" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register Property</button>
-</form>
+</div>

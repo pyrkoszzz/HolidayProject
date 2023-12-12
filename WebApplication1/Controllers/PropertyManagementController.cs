@@ -41,19 +41,18 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadImage(ImageModel model)
+        public async Task<IActionResult> UploadImageAsync(ImageModel model)
         {
-            if (model.Image != null)
+            if (model.Image != null && model.Image.Length > 0)
             {
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.Image.FileName)}";
-                var urlPath = $"/images/{fileName}";
-                var filePath = Path.Combine(_env.WebRootPath, "images", fileName);
+                var urlPath = $"/uploads/{fileName}";
+                var filePath = Path.Combine(_env.WebRootPath, "uploads", fileName);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.Image.CopyTo(stream);
+                    await model.Image.CopyToAsync(fileStream);
                 }
-
                 _propertyRepository.AddPropertyImage(model.PropertyId, urlPath);
             }
 
