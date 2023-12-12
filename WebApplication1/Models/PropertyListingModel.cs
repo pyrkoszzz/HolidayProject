@@ -8,5 +8,6 @@
         public string Location { get; set; }
         public int NumberOfBedrooms { get; set; }
         public float CostPerNight { get; set; }
+        public IEnumerable<string> Images { get; set; } = new List<string>();
     }
 }

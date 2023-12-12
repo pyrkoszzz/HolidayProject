@@ -1,5 +1,4 @@
-﻿
-namespace DataEntities.Entities
+﻿namespace DataEntities.Entities
 {
     public class Property
     {
@@ -12,5 +11,6 @@ namespace DataEntities.Entities
         public string Description { get; set; }
         //public List<string> Amenities { get; set; }
         public List<BookedNight> BookedNights { get; set; }
+        public List<PropertyImage> Images { get; set; } = new();
     }
 }

@@ -7,6 +7,7 @@ namespace DataEntities
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Property> Properties { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

@@ -4,6 +4,7 @@ using DataEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataEntities.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231207145457_AddingBookingEntity")]
+    partial class AddingBookingEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace DataEntities.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DataEntities.Entities.BookedNight", b =>
+            modelBuilder.Entity("DataEntities.BookedNight", b =>
                 {
                     b.Property<int>("BookedNightId")
                         .ValueGeneratedOnAdd()
@@ -71,9 +73,8 @@ namespace DataEntities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("BookingId");
 
@@ -137,28 +138,6 @@ namespace DataEntities.Migrations
                             Name = "Safron House",
                             NumberOfBedrooms = 7
                         });
-                });
-
-            modelBuilder.Entity("DataEntities.Entities.PropertyImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyId");
-
-                    b.ToTable("PropertyImage");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -363,7 +342,7 @@ namespace DataEntities.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DataEntities.Entities.BookedNight", b =>
+            modelBuilder.Entity("DataEntities.BookedNight", b =>
                 {
                     b.HasOne("DataEntities.Entities.Property", "Property")
                         .WithMany("BookedNights")
@@ -378,17 +357,6 @@ namespace DataEntities.Migrations
                 {
                     b.HasOne("DataEntities.Entities.Property", "Property")
                         .WithMany()
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Property");
-                });
-
-            modelBuilder.Entity("DataEntities.Entities.PropertyImage", b =>
-                {
-                    b.HasOne("DataEntities.Entities.Property", "Property")
-                        .WithMany("Images")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -450,8 +418,6 @@ namespace DataEntities.Migrations
             modelBuilder.Entity("DataEntities.Entities.Property", b =>
                 {
                     b.Navigation("BookedNights");
-
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

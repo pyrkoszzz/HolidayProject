@@ -1,9 +1,4 @@
 ﻿using DataEntities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataEntities.Repositories
 {
@@ -47,6 +42,21 @@ namespace DataEntities.Repositories
             property.PropertyId = properties.Any() ? properties.Max(p => p.PropertyId) + 1 : 1;
             properties.Add(property);
             return property;
+        }
+
+        public IEnumerable<Property> GetAvailableProperties(DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Property BookProperty(int propertyId, DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PropertyImage AddPropertyImage(int propertyId, string imageUrl)
+        {
+            throw new NotImplementedException();
         }
     }
 }
